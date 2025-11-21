@@ -9,13 +9,13 @@ const NewArrivals = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        // Replace with your actual backend API endpoint
+        
         const response = await fetch('http://localhost:5000/api/products'); 
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
-        // Limit to a maximum of 8 cards
+        
         setProducts(data.slice(0, 8)); 
       } catch (error) {
         setError(error.message);
