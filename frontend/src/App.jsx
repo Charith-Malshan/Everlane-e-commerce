@@ -6,6 +6,8 @@ import ProductAdmin from './pages/admin/productsAdminPage.jsx'
 import Login from './pages/login/Login'
 import Register from './pages/register/Register'
 import ForgotPassword from './pages/login/ForgotPassword'
+import Cart from './pages/cart/Cart'
+import Checkout from './pages/checkout/Checkout'
 
 const App = () => {
   return (
@@ -17,6 +19,8 @@ const App = () => {
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<Register />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path='/cart' element={<Cart />} />
+        <Route path='/checkout' element={<Checkout />} />
       </Routes>
     </div>
   )
