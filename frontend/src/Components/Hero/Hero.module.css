@@ -1,0 +1,98 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.section img {
+    width: 100%;
+    height: 5%;
+}
+
+.section {
+    position: relative;
+}
+
+.heading {
+    position: absolute;
+    color: black;
+    top: 30%;
+    padding: 90px;
+    width: 100%; 
+    box-sizing: border-box;
+}
+
+.h1 {
+    padding: 15px;
+    font-size: 50px;
+    font-weight: bold;
+    color: white;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.Button {
+    position: absolute;
+    top: 65%;
+    padding: 0 100px;
+    color: white;
+    border: none;
+    width: 100%; 
+    box-sizing: border-box;
+}
+
+.button {
+    padding: 10px 50px;
+    background-color: white;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+
+@media (min-width: 601px) and (max-width: 1024px) {
+    .heading {
+        top: 25%;
+        padding: 50px;
+    }
+
+    .h1 {
+        font-size: 40px;
+        padding: 10px;
+    }
+
+    .Button {
+        top: 80%;
+        padding: 0 50px;
+    }
+
+    .button {
+        padding: 10px 40px;
+    }
+}
+
+
+@media (max-width: 600px) {
+    .heading {
+        top: 10%;
+        padding: 10px;
+        text-align: center; 
+    }
+
+    .h1 {
+        font-size: 30px;
+        padding: 5px;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); 
+    }
+
+    .Button {
+        top: 75%;
+        padding: 0 20px;
+        text-align: center;
+    }
+
+    .button {
+        padding: 8px 30px;
+        display: inline-block; 
+    }
+}
