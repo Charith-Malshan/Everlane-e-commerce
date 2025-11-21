@@ -1,0 +1,303 @@
+/* ---------------------------------------------------------
+   DESIGN TOKENS
+--------------------------------------------------------- */
+:root {
+  --panel: #ffffff;
+  --text: #111827;
+  --muted: #6b7280;
+  --blue: #2563eb;
+  --border: #e5e7eb;
+  --input-bg: #ffffff;
+  --input-border: #d1d5db;
+  --input-focus: #3b82f6;
+
+  /* Taupe primary button */
+  --btn-bg: #8d8372;
+  --btn-bg-hover: #7f7666;
+  --btn-text: #ffffff;
+
+  --radius: 10px;
+  --space-xs: 6px;
+  --space-sm: 12px;
+  --space-md: 18px;
+  --space-lg: 28px;
+  --space-xl: 40px;
+  --space-2xl: 60px;
+}
+
+/* ---------------------------------------------------------
+   RESET & BASE
+--------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  color: var(--text);
+  background: #fff;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------------------------------------------------------
+   LAYOUT (MOBILE FIRST — BEST PRACTICE)
+--------------------------------------------------------- */
+.login-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  min-height: 100dvh;
+  width: 100%;
+}
+
+.left-panel {
+  background: var(--panel);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-xl) var(--space-lg);
+}
+
+.form-wrap {
+  width: 110%;
+  max-width: 420px;
+}
+
+/* Right image hidden by default on mobile */
+.login-image {
+  display: none;
+}
+
+/* ---------------------------------------------------------
+   TYPOGRAPHY
+--------------------------------------------------------- */
+.title {
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: var(--space-xs);
+}
+
+.subtitle {
+  color: var(--muted);
+  font-size: 14px;
+  margin-bottom: var(--space-lg);
+}
+
+/* ---------------------------------------------------------
+   FORM ELEMENTS
+--------------------------------------------------------- */
+.form-group {
+  margin-bottom: var(--space-md);
+}
+
+.label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: var(--space-xs);
+}
+
+.input {
+  width: 100%;
+  height: 30px;
+  padding: 0 14px;
+  border: 1px solid var(--input-border);
+  background: var(--input-bg);
+  border-radius: var(--radius);
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.input:focus {
+  border-color: var(--input-focus);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+.assistive {
+  font-size: 12px;
+  margin-top: var(--space-xs);
+  color: #b45309;
+  min-height: 16px;
+}
+
+.right-align {
+  text-align: right;
+  margin-bottom: var(--space-md);
+}
+
+.link {
+  color: var(--blue);
+  text-decoration: none;
+  font-size: 14px;
+}
+.link:hover {
+  text-decoration: underline;
+}
+
+/* ---------------------------------------------------------
+   ACTIONS
+--------------------------------------------------------- */
+.actions {
+  display: grid;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-md);
+}
+
+.remember {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+.remember input {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--blue);
+}
+
+.btn {
+  width: 100%;
+  height: 46px;
+  border: none;
+  border-radius: var(--radius);
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s ease, opacity 0.2s ease;
+}
+
+.btn-primary {
+  background: var(--btn-bg);
+  color: var(--btn-text);
+}
+.btn-primary:hover {
+  background: var(--btn-bg-hover);
+}
+.btn-primary:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* ---------------------------------------------------------
+   SEPARATOR
+--------------------------------------------------------- */
+.separator {
+  position: relative;
+  text-align: center;
+  margin: var(--space-lg) 0;
+}
+
+.separator::before,
+.separator::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 38%;
+  height: 1px;
+  background: var(--border);
+}
+
+.separator::before { left: 0; }
+.separator::after { right: 0; }
+
+.separator span {
+  padding: 0 10px;
+  background: var(--panel);
+  font-size: 14px;
+  color: var(--muted);
+}
+
+/* ---------------------------------------------------------
+   GOOGLE BUTTON
+--------------------------------------------------------- */
+.btn-google {
+  background: #fff;
+  color: var(--text);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 46px;
+  gap: 10px;
+  border-radius: var(--radius);
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.btn-google:hover {
+  background: #f9fafb;
+}
+
+.google-icon {
+  width: 18px;
+  height: 18px;
+}
+
+/* ---------------------------------------------------------
+   FOOTER
+--------------------------------------------------------- */
+.footer {
+  margin-top: var(--space-md);
+  font-size: 14px;
+  color: var(--muted);
+}
+.footer a {
+  color: var(--blue);
+  font-weight: 700;
+  text-decoration: none;
+}
+.footer a:hover {
+  text-decoration: underline;
+}
+
+/* ---------------------------------------------------------
+   RESPONSIVE BREAKPOINTS
+--------------------------------------------------------- */
+
+/* Tablets */
+@media (min-width: 768px) {
+  .login-grid {
+    grid-template-columns: 55% 45%;
+  }
+
+  .login-image {
+    display: block;
+  }
+
+  .login-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .title {
+    font-size: 32px;
+  }
+}
+
+/* Desktops */
+@media (min-width: 1024px) {
+  .login-grid {
+    grid-template-columns: 46% 54%;
+  }
+
+  .left-panel {
+    padding: var(--space-2xl) var(--space-xl);
+  }
+
+  .title {
+    font-size: 40px;
+  }
+
+  .subtitle {
+    font-size: 16px;
+  }
+}
