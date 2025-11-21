@@ -1,0 +1,109 @@
+/* src/App.css */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: white;
+  color: #2d2d2d;
+}
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.cart-wrapper {
+  padding: 40px 48px 60px;
+  flex: 1;
+}
+
+.cart-table {
+  padding: 0 18px 40px;
+}
+
+.cart-header {
+  background-color: #8F9AA2;
+  color: black;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 10px 14px;
+  display: grid;
+  grid-template-columns: 40px 120px 2fr 1fr 1fr 1fr;
+  align-items: center;
+}
+
+.cart-row {
+  display: grid;
+  grid-template-columns: 40px 120px 2fr 1fr 1fr 1fr;
+  align-items: center;
+  padding: 16px 14px;
+  border-bottom: 1px solid #d9d9d9;
+  background-color: #F6F5F5;
+}
+
+.remove-btn {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.product-img img {
+  width: 70px;
+  height: 90px;
+  object-fit: cover;
+}
+
+.product-title {
+  font-size: 14px;
+}
+
+.price,
+.row-total {
+  font-size: 14px;
+}
+
+.quantity {
+  display: flex;
+  justify-content: center;
+}
+
+.qty-control {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #c5c5c5;
+  padding: 4px 8px;
+  width: 110px;
+  font-size: 14px;
+}
+
+.qty-control button {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* CHECKOUT BUTTON */
+
+.checkout-wrapper {
+  margin-top: 40px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.checkout-btn {
+  padding: 10px 40px;
+  background-color: #7c8893;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 3px;
+  font-size: 14px;
+}

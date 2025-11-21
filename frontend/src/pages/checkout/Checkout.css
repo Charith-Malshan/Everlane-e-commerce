@@ -1,0 +1,217 @@
+.payment-wrapper {
+  flex: 1;
+  display: flex;
+  gap: 60px;
+  padding: 70px 64px 60px;
+  background-color: #ffffff;
+}
+
+.payment-left {
+  flex: 3;
+  max-width: 520px;
+}
+
+.payment-right {
+  flex: 2;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.payment-title {
+  font-size: 22px;
+  margin-top: 0;
+  margin-bottom: 24px;
+}
+
+.payment-section-title {
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+
+/* PAYMENT METHODS */
+
+.payment-methods {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.method-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid #c5c5c5;
+  background-color: #fff;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.method-pill-active {
+  border-color: #2d2d2d;
+}
+
+.method-radio {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 1px solid #2d2d2d;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.method-radio span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #2d2d2d;
+}
+
+/* FORM FIELDS */
+
+.field {
+  margin-bottom: 18px;
+}
+
+.field-label {
+  display: block;
+  font-size: 11px;
+  margin-bottom: 4px;
+}
+
+.text-input {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #c5c5c5;
+  padding: 6px 0;
+  font-size: 13px;
+  outline: none;
+  background-color: transparent;
+}
+
+.text-input::placeholder {
+  color: #b7b7b7;
+}
+
+.input-with-addon {
+  position: relative;
+}
+
+.card-brand {
+  position: absolute;
+  right: 0;
+  top: 4px;
+  font-size: 11px;
+  color: #707070;
+}
+
+.field-row {
+  display: flex;
+  gap: 24px;
+}
+
+/* TERMS + BUTTONS */
+
+.terms-text {
+  font-size: 10px;
+  color: #707070;
+  margin-top: 4px;
+  max-width: 350px;
+}
+
+.payment-actions {
+  margin-top: 24px;
+  display: flex;
+  gap: 16px;
+}
+
+.btn-secondary,
+.btn-primary {
+  padding: 10px 26px;
+  font-size: 13px;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.btn-secondary {
+  background-color: #ffffff;
+  border: 1px solid #2d2d2d;
+}
+
+.btn-primary {
+  background-color: #8F9AA2;
+  color: #fff;
+  border: none;
+}
+
+/* ORDER SUMMARY */
+
+.summary-card {
+  width: 100%;
+  max-width: 360px;
+  background-color: #f4f4f4;
+  padding: 24px 22px 28px;
+}
+
+.summary-title {
+  margin: 0 0 18px;
+  font-size: 18px;
+}
+
+.summary-items {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.summary-item {
+  display: flex;
+  background-color: #e9e9e9;
+  padding: 10px;
+  gap: 12px;
+}
+
+.summary-img img {
+  width: 120px;
+  height: 150px;
+  object-fit: cover;
+}
+
+.summary-info {
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.summary-product-title {
+  font-weight: 500;
+}
+
+.summary-product-price {
+  font-size: 12px;
+  margin-bottom: 8px;
+}
+
+.summary-meta-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+}
+
+.summary-subtotal {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 16px;
+}
+
+.subtotal-box {
+  padding: 6px 20px;
+  border: 1px solid #2d2d2d;
+  background-color: #ffffff;
+  font-size: 14px;
+}
