@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { productAPI } from '../../services/api';
-import { getImageUrl, handleImageError } from '../../utils/imageUtils';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+//import { productAPI } from '../../services/api';
+//import { getImageUrl, handleImageError } from '../../utils/imageUtils';
 import './admin.css'
 export default function ProductAdmin(){
 	const navigate = useNavigate();
@@ -17,7 +18,7 @@ export default function ProductAdmin(){
 	const fetchProducts = async () => {
 		try {
 			setLoading(true);
-			const data = await productAPI.getAllProducts();
+			//const data = await productAPI.getAllProducts();
 			setProducts(data);
 			setError(null);
 		} catch (err) {
