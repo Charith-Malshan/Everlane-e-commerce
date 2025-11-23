@@ -1,0 +1,73 @@
+/* Styling for a single Order Card */
+.card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.details {
+    flex-grow: 1;
+}
+
+.detailItem {
+    margin: 3px 0;
+    font-size: 0.95rem;
+    color: #333;
+}
+
+.label {
+    font-weight: 500;
+}
+
+.id {
+    font-weight: bold;
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* --- Status Badge Styles (Pill Shape) --- */
+.statusBadge {
+    padding: 4px 12px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+/* Specific Colors matching the image */
+.delivered {
+    background-color: #d4edda; /* Light Green */
+    color: #155724; /* Dark Green */
+}
+
+.shipped {
+    background-color: #cce5ff; /* Light Blue */
+    color: #004085; /* Dark Blue */
+}
+
+.processing {
+    background-color: #fff3cd; /* Light Orange */
+    color: #856404; /* Dark Orange */
+}
+
+.viewButton {
+    background: none;
+    border: none;
+    color: #555;
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 0.9rem;
+    padding: 0;
+}
+
+.viewButton:hover {
+    color: #000;
+}
