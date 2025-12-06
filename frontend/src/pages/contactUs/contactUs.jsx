@@ -198,7 +198,6 @@ export default function ContactUs() {
         </div>
       </main>
 
-      {/* Footer */}
       <Footer />
     </div>
   );

@@ -4,13 +4,16 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  width : 100%;
+  margin: 0 auto;
+ 
   
 }
 
 .mainContent {
   flex: 1;
   background: #fff;
-  padding: 60px 80px;
+  padding: 60px 80px ;
   
 }
 
@@ -103,7 +106,7 @@
   border-radius: 5px;
   font-size: 14px;
   outline: none;
-  color: #000;
+  color: white;
 }
 
 .textarea {
@@ -115,7 +118,7 @@
   resize: vertical;
   outline: none;
   font-family: Arial, sans-serif;
-  color: #000;
+  color: white;
 }
 
 .error {
