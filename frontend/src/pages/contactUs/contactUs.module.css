@@ -106,7 +106,8 @@
   border-radius: 5px;
   font-size: 14px;
   outline: none;
-  color: white;
+   background: #ffffff;
+  color: black;
 }
 
 .textarea {
@@ -118,7 +119,8 @@
   resize: vertical;
   outline: none;
   font-family: Arial, sans-serif;
-  color: white;
+  background: #ffffff;
+  color: black;
 }
 
 .error {
