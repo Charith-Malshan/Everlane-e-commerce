@@ -26,7 +26,7 @@ const Navbar = () => {
       <div className={`${styles.links} ${isMenuOpen ? styles.active : ''}`}>
         <Link to="/" className={styles.navLink} onClick={toggleMenu}>Home</Link>
         <Link to="/productspage" className={styles.navLink} onClick={toggleMenu}>Products</Link>
-        <Link to="/contacts" className={styles.navLink} onClick={toggleMenu}>Contacts</Link>
+        <Link to="/contactus" className={styles.navLink} onClick={toggleMenu}>Contacts</Link>
       </div>
 
       {/* Icons remain visible on desktop and mobile */}

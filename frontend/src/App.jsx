@@ -9,6 +9,7 @@ import Cart from './pages/cart/Cart'
 import Checkout from './pages/checkout/Checkout'
 import Wishlist from './pages/Wishlist/wishlist.jsx';
 import Product from './pages/ProductPage/productPage.jsx';
+import ContactUs from './pages/contactUs/contactUs.jsx';
 
 const App = () => {
   return (
@@ -23,6 +24,7 @@ const App = () => {
         <Route path='/cart' element={<Cart />} />
         <Route path='/checkout' element={<Checkout />} />
         <Route path='/wishlist' element={<Wishlist />} />
+         <Route path='/contactus' element={<ContactUs />} />
         
 
       </Routes>
