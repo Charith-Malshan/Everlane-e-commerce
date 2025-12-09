@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import "./Login.css";
 
-// Use your API base URL (Vite or CRA) or fallback to "/api"
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "/api";
-// Optional: replace with your own asset
 const IMAGE_URL =
   "./src/assets/login1.jpg";
 
@@ -120,12 +118,7 @@ function Login() {
               />
             </div>
 
-            {/* Forgot Password (right-aligned) */}
-            <div className="right-align">
-              <a className="link" href="/forgot-password">
-                forgot password?
-              </a>
-            </div>
+        
 
             {/* Actions */}
             <div className="actions">

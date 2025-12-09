@@ -2,13 +2,12 @@ import React, { useState } from "react";
 import "./Register.css";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "/api";
-const IMAGE_URL = "./src/assets/login1.jpg"; // same image as Login
+const IMAGE_URL = "./src/assets/login1.jpg"; 
 
 function Register() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirm, setConfirm] = useState("");
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
 
@@ -32,7 +31,7 @@ function Register() {
       const res = await fetch(`${API_BASE_URL}/auth/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        credentials: "include", // keep if backend sets httpOnly cookies
+        credentials: "include", 
         body: JSON.stringify({ name: name.trim(), email, password }),
       });
 
@@ -42,7 +41,6 @@ function Register() {
         throw new Error(data?.message || "Failed to create account");
       }
 
-      // Optional: store token if backend returns it
       if (data?.token) {
         try {
           localStorage.setItem("token", data.token);
@@ -53,7 +51,6 @@ function Register() {
         } catch { }
       }
 
-      // Go to your app after successful signup
       window.location.assign("/dashboard");
     } catch (err) {
       setErrorMsg(err.message || "Unexpected error. Please try again.");
@@ -147,30 +144,7 @@ function Register() {
               </div>
             </div>
 
-            {/* Confirm Password */}
-            <div className="form-group">
-              <label htmlFor="confirm" className="label">
-                Confirm password
-              </label>
-              <input
-                id="confirm"
-                name="confirm"
-                type="password"
-                className="input"
-                placeholder="Re-enter your password"
-                autoComplete="new-password"
-                value={confirm}
-                onChange={(e) => setConfirm(e.target.value)}
-                aria-invalid={confirm !== "" && confirm !== password}
-                aria-describedby="confirm-help"
-                required
-              />
-              <div id="confirm-help" className="assistive">
-                {confirm !== "" && confirm !== password
-                  ? "Passwords do not match."
-                  : " "}
-              </div>
-            </div>
+           
 
             {/* Actions */}
             <div className="actions">
