@@ -1,199 +1,202 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import authService from "../../api/authService";
 import "./Register.css";
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "/api";
-const IMAGE_URL = "./src/assets/login1.jpg"; 
+const IMAGE_URL = "./src/assets/login1.jpg";
 
 function Register() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [errorMsg, setErrorMsg] = useState("");
+    // ==========================================
+    // State
+    // ==========================================
+    const [fullName, setFullName] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [loading, setLoading] = useState(false);
+    const [errorMsg, setErrorMsg] = useState("");
 
-  const isEmailValid = (val) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
-  const isPasswordValid = (val) => val.length >= 6;
+    const navigate = useNavigate();
 
-  const canSubmit =
-    name.trim().length > 0 &&
-    isEmailValid(email) &&
-    isPasswordValid(password) &&
-    password === confirm &&
-    !loading;
+    // ==========================================
+    // Validation
+    // ==========================================
+    const isEmailValid = (val) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
+    const isPasswordValid = (val) => val.length >= 6;
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!canSubmit) return;
-    setLoading(true);
-    setErrorMsg("");
+    const canSubmit =
+        fullName.trim().length > 0 &&
+        isEmailValid(email) &&
+        isPasswordValid(password) &&
+        !loading;
 
-    try {
-      const res = await fetch(`${API_BASE_URL}/auth/register`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include", 
-        body: JSON.stringify({ name: name.trim(), email, password }),
-      });
+    // ==========================================
+    // Handle form submission
+    // ==========================================
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        if (!canSubmit) return;
 
-      const data = await res.json().catch(() => ({}));
+        setLoading(true);
+        setErrorMsg("");
 
-      if (!res.ok) {
-        throw new Error(data?.message || "Failed to create account");
-      }
-
-      if (data?.token) {
         try {
-          localStorage.setItem("token", data.token);
-          localStorage.setItem(
-            "token_expiry",
-            String(Date.now() + 30 * 24 * 60 * 60 * 1000)
-          );
-        } catch { }
-      }
+            // Call register API using authService
+            const response = await authService.register({
+                fullName: fullName.trim(),
+                email: email.toLowerCase().trim(),
+                password
+            });
 
-      window.location.assign("/dashboard");
-    } catch (err) {
-      setErrorMsg(err.message || "Unexpected error. Please try again.");
-    } finally {
-      setLoading(false);
-    }
-  };
+            // Check if registration was successful
+            if (response.success && response.data?.token) {
+                // Store token
+                authService.setToken(response.data.token);
 
-  const handleGoogleSignIn = () => {
-    window.location.href = `${API_BASE_URL}/auth/google`;
-  };
+                // Redirect to dashboard
+                navigate("/login");
+            } else {
+                throw new Error(response.message || "Registration failed");
+            }
 
-  return (
-    <div className="login-grid">
-      {/* Left: Form Panel */}
-      <section className="left-panel">
-        <div className="form-wrap">
-          <header>
-            <h2 className="title">Create your account</h2>
-            <p className="subtitle">Enter your details to get started</p>
-          </header>
+        } catch (error) {
+            // Handle Axios errors
+            if (error.response) {
+                // Server responded with error status
+                setErrorMsg(
+                    error.response.data?.message ||
+                    "Failed to create account. Please try again."
+                );
+            } else if (error.request) {
+                // Request made but no response received
+                setErrorMsg("Unable to connect to server. Please check your connection.");
+            } else {
+                // Other errors
+                setErrorMsg(error.message || "An unexpected error occurred.");
+            }
+        } finally {
+            setLoading(false);
+        }
+    };
 
-          {errorMsg ? (
-            <div className="error" role="alert">{errorMsg}</div>
-          ) : null}
+    // ==========================================
+    // Render
+    // ==========================================
+    return (
+        <div className="login-grid">
+            {/* Left: Form Panel */}
+            <section className="left-panel">
+                <div className="form-wrap">
+                    <header>
+                        <h2 className="title">Create your account</h2>
+                        <p className="subtitle">Enter your details to get started</p>
+                    </header>
 
-          <form onSubmit={handleSubmit} noValidate>
-            {/* Name */}
-            <div className="form-group">
-              <label htmlFor="name" className="label">
-                Full name
-              </label>
-              <input
-                id="name"
-                name="name"
-                type="text"
-                className="input"
-                placeholder="Enter your name"
-                autoComplete="name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                required
-              />
-            </div>
+                    {/* Error Message */}
+                    {errorMsg && (
+                        <div className="error" role="alert">
+                            {errorMsg}
+                        </div>
+                    )}
 
-            {/* Email */}
-            <div className="form-group">
-              <label htmlFor="email" className="label">
-                Email address
-              </label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                className="input"
-                placeholder="Enter your email"
-                autoComplete="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                aria-invalid={email !== "" && !isEmailValid(email)}
-                aria-describedby="email-help"
-                required
-              />
-              <div id="email-help" className="assistive">
-                {email !== "" && !isEmailValid(email)
-                  ? "Please enter a valid email."
-                  : " "}
-              </div>
-            </div>
+                    <form onSubmit={handleSubmit} noValidate>
+                        {/* Full Name */}
+                        <div className="form-group">
+                            <label htmlFor="fullName" className="label">
+                                Full name
+                            </label>
+                            <input
+                                id="fullName"
+                                name="fullName"
+                                type="text"
+                                className="input"
+                                placeholder="Enter your name"
+                                autoComplete="name"
+                                value={fullName}
+                                onChange={(e) => setFullName(e.target.value)}
+                                disabled={loading}
+                                required
+                            />
+                        </div>
 
-            {/* Password */}
-            <div className="form-group">
-              <label htmlFor="password" className="label">
-                Password
-              </label>
-              <input
-                id="password"
-                name="password"
-                type="password"
-                className="input"
-                placeholder="Create a password"
-                autoComplete="new-password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
-              <div className="assistive">
-                {password !== "" && !isPasswordValid(password)
-                  ? "Use at least 6 characters."
-                  : " "}
-              </div>
-            </div>
+                        {/* Email */}
+                        <div className="form-group">
+                            <label htmlFor="email" className="label">
+                                Email address
+                            </label>
+                            <input
+                                id="email"
+                                name="email"
+                                type="email"
+                                className="input"
+                                placeholder="Enter your email"
+                                autoComplete="email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                disabled={loading}
+                                aria-invalid={email !== "" && !isEmailValid(email)}
+                                aria-describedby="email-help"
+                                required
+                            />
+                            <div id="email-help" className="assistive">
+                                {email !== "" && !isEmailValid(email)
+                                    ? "Please enter a valid email."
+                                    : " "}
+                            </div>
+                        </div>
 
-           
+                        {/* Password */}
+                        <div className="form-group">
+                            <label htmlFor="password" className="label">
+                                Password
+                            </label>
+                            <input
+                                id="password"
+                                name="password"
+                                type="password"
+                                className="input"
+                                placeholder="Create a password"
+                                autoComplete="new-password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                disabled={loading}
+                                required
+                            />
+                            <div className="assistive">
+                                {password !== "" && !isPasswordValid(password)
+                                    ? "Use at least 6 characters."
+                                    : " "}
+                            </div>
+                        </div>
 
-            {/* Actions */}
-            <div className="actions">
-              <button
-                type="submit"
-                className="btn btn-primary"
-                disabled={!canSubmit}
-                aria-busy={loading}
-              >
-                {loading ? "Creating account..." : "Create account"}
-              </button>
-            </div>
+                        {/* Submit Button */}
+                        <div className="actions">
+                            <button
+                                type="submit"
+                                className="btn btn-primary"
+                                disabled={!canSubmit}
+                                aria-busy={loading}
+                            >
+                                {loading ? "Creating account..." : "Create account"}
+                            </button>
+                        </div>
+                    </form>
 
-            {/* Separator */}
-            <div className="separator" aria-hidden="true">
-              <span>Or</span>
-            </div>
+                    {/* Footer */}
+                    <footer className="footer">
+                        Already have an account? <a href="/login">Login</a>
+                    </footer>
+                </div>
+            </section>
 
-            {/* Google Sign-up */}
-            <button
-              type="button"
-              className="btn-google"
-              onClick={handleGoogleSignIn}
-            >
-              <img
-                className="google-icon"
-                alt="Google logo"
-                src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
-              />
-              Continue with Google
-            </button>
-          </form>
-
-          {/* Footer */}
-          <footer className="footer">
-            Already have an account? <a href="/login">Login</a>
-          </footer>
+            {/* Right: Image Panel */}
+            <aside className="login-image" aria-hidden="true">
+                <img
+                    src={IMAGE_URL}
+                    alt="Two models in a studio wearing classic winter coats"
+                />
+            </aside>
         </div>
-      </section>
-
-      {/* Right: Image Panel */}
-      <aside className="login-image" aria-hidden="true">
-        <img
-          src={IMAGE_URL}
-          alt="Two models in a studio wearing classic winter coats"
-        />
-      </aside>
-    </div>
-  );
+    );
 }
 
 export default Register;
